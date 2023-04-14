@@ -1,0 +1,21 @@
+h1{
+  color: beige;
+  border: 20px solid crimson;  
+  text-align: center;
+}
+.alo{
+    background-color: black;
+    color: red;
+}
+body{
+    background-color: black;
+}
+p{
+    color: white;
+}
+table{
+    color: white;
+}
+button{
+    background-color: aqua;
+}
