@@ -10,5 +10,5 @@
     echo $persona2 -> nombre." ". $persona2->apellido." ". $persona2->edad." ".$persona2->dni;
     echo $persona3 -> nombre." ". $persona3->apellido." ". $persona3->edad." ".$persona3->dni;
 
-    $banco1 = new Banco("Banco Nacional Peruano","Artigas 1540");
+    $cuenta1 = new CuentaBancaria(0010,$persona1,10000)
 ?>
