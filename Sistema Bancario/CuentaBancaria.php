@@ -4,15 +4,18 @@
         public $saldo;
         public $titular;
         
-        public function __construct($numeroCuenta,$titular){
+        public function __construct($numeroCuenta,$titular,$saldo){
             $this -> numeroCuenta = $numeroCuenta;
             $this -> titular = $titular;
+            $this -> saldo = $saldo;
     }
-    function Depositar($cantidad){
-        $this -> saldo += $cantidad;
+    public function Depositar($cantidad){
+        if($cantidad>0){
+        $this -> saldo= $this -> saldo += $cantidad;
     }
-    function Retirar($cantidad){
-        $this -> saldo -= $cantidad;
+    public function Retirar($cantidad){
+        if (($this -> saldo)>$cantidad){
+        $this -> saldo=$this ->saldo -= $cantidad;
     }
 }
 ?>
