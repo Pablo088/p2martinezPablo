@@ -8,5 +8,10 @@
         public function getNombre(){
             return $this->nombre;
         }
+        public function verNacionalidad($nacionalidad){
+            if($nacionalidad == "argentino"){
+                echo ". Soy pobre, pero argentino";
+            }
+        }
     }
 ?>
