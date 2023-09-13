@@ -16,7 +16,7 @@
         }
     }
     public function Retirar($cantidad){
-        if (($this -> saldo)>$cantidad){
+        if (($this -> saldo)>=$cantidad){
         $this -> saldo=$this ->saldo - $cantidad;
         echo "Retiraste ".$cantidad." y tu saldo ahora es de ".$this->saldo;
         }else if (($this->saldo)<$cantidad && self::limite>=$cantidad){
