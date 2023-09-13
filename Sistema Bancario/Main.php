@@ -12,9 +12,9 @@
 
     $banco1 = new Banco("Banco Nacional Peruano","Avellaneda 1500");
 */    
-    $cuenta1 = new CuentaBancaria(0010,$persona1->nombre." ".$persona1->apellido,10000);
-    $cuenta2 = new CuentaBancaria(0015,$persona2->nombre." ".$persona2->apellido,0);
-    $cuenta3 = new CuentaBancaria(0020,$persona3->nombre." ".$persona3->apellido,100000);
+    $cuenta1 = new CuentaBancaria(10,$persona1->nombre." ".$persona1->apellido,10000);
+    $cuenta2 = new CuentaBancaria(15,$persona2->nombre." ".$persona2->apellido,0);
+    $cuenta3 = new CuentaBancaria(20,$persona3->nombre." ".$persona3->apellido,100000);
 
     $banco1 -> agregarCuenta($cuenta1);
     $banco1 -> agregarCuenta($cuenta2);
