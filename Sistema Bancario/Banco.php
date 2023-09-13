@@ -8,12 +8,12 @@
             $this -> nombre = $nombre;
             $this -> direccion = $direccion;
     }
-   function agregarCuenta($cuenta){
+    function agregarCuenta($cuenta){
         $this-> listaCuentas[] = $cuenta;
     }
-    function buscarCuentaPorTitular($nombreTitular){
+    function buscarCuentaPorTitular($cuentaTitular){
         foreach($this->listaCuentas as $todasLasCuentas){
-            if($nombreTitular ==($todasLasCuentas->titular)){
+            if($cuentaTitular ==($todasLasCuentas->titular)){
                 echo "Numero de cuenta: ".$todasLasCuentas->numeroCuenta." - Titular: ".$todasLasCuentas->titular." - Saldo: ".$todasLasCuentas->saldo;
             }
         }
