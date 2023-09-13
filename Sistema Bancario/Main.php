@@ -20,13 +20,18 @@
     $banco1 -> agregarCuenta($cuenta1);
     $banco1 -> agregarCuenta($cuenta2);
     $banco1 -> agregarCuenta($cuenta3);
+
+    $cuenta3 -> Retirar(70000);
 /*
+    $banco1->buscarCuentaPorTitular("Rodrigo Puentes");
+
     $cuenta1 -> Depositar(1000);
     echo $cuenta1;
 
     $cuenta1 -> Transferir($cuenta3->titular,$cuenta3->saldo,5000,$cuenta1->saldo,$cuenta1->titular);
     echo $cuenta1;
 
-    $banco1->buscarCuentaPorTitular("Leandro Paredes");  
+    
+
+    $cuenta1 -> Depositar(10000);
 */
-    $cuenta1 -> Retirar(7000);
