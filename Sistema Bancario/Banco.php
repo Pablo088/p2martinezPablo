@@ -8,22 +8,15 @@
             $this -> nombre = $nombre;
             $this -> direccion = $direccion;
     }
-    function agregarCuenta($numeroCuenta){
-        $this-> listaCuentas[] = $numeroCuenta;
+   function agregarCuenta($cuenta){
+        $this-> listaCuentas[] = $cuenta;
     }
-    function buscarCuentaPorTitular($a,$b){
-        if ($a==($this->listaCuentas[1]->titular->nombre)){
-            echo ("Dentro");
-            var_dump($this->listaCuentas[1]);
-      
-            foreach ($this->listaCuentas as $totalDeCuentas) {
-                //var_dump($cadaCuenta->titular->nombre,$cadaCuenta->titular->apellido);
-                if ((($cadaCuenta->titular->nombre) == $a) && (($cadaCuenta->titular->apellido) == $b) ){
-                    echo("Cuenta Encontrada<br>");
-                    var_dump($cadaCuenta);
-                }
+    function buscarCuentaPorTitular($nombreTitular){
+        foreach($this->listaCuentas as $todasLasCuentas){
+            if($nombreTitular ==($todasLasCuentas->titular)){
+                echo "Numero de cuenta: ".$todasLasCuentas->numeroCuenta." - Titular: ".$todasLasCuentas->titular." - Saldo: ".$todasLasCuentas->saldo;
             }
         }
-    }
+    }     
 }
 ?>
