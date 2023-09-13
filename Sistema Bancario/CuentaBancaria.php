@@ -17,5 +17,14 @@
         if (($this -> saldo)>$cantidad){
         $this -> saldo=$this ->saldo -= $cantidad;
     }
+    public function Transferir($nombre1,$transfiereSaldo,$cantidadTransferencia,$recibeSaldo,$nombre2){
+        if($transfiereSaldo>0){
+            $transfiereSaldo = $transfiereSaldo -= $cantidadTransferencia;
+            $recibeSaldo = $recibeSaldo += $cantidadTransferencia;
+           // echo $nombre1." acaba de transferir ".$cantidadTransferencia." pesos a ".$nombre2;
+            echo "Transferencia existosa! ";
+            echo "El saldo de ".$nombre1." es de ".$transfiereSaldo.", y el de ",$nombre2." es de ".$recibeSaldo;
+        }
+    }
 }
 ?>
