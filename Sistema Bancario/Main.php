@@ -15,7 +15,7 @@
     $cuenta1 = new CuentaBancaria(0010,$persona1->nombre." ".$persona1->apellido,10000);
     $cuenta2 = new CuentaBancaria(0015,$persona2->nombre." ".$persona2->apellido,0);
     $cuenta3 = new CuentaBancaria(0020,$persona3->nombre." ".$persona3->apellido,100000);
-/*
+
     $banco1 -> agregarCuenta($cuenta1);
     $banco1 -> agregarCuenta($cuenta2);
     $banco1 -> agregarCuenta($cuenta3);
@@ -23,7 +23,9 @@
 
     $cuenta1 -> Depositar(1000);
     var_dump($cuenta1);
-*/
+/*
     $cuenta1 -> Transferir($cuenta3->titular,$cuenta3->saldo,5000,$cuenta1->saldo,$cuenta1->titular);
     echo $cuenta1;
+*/
+     $banco1->buscarCuentaPorTitular("Leandro Paredes"); 
 ?>
