@@ -16,7 +16,7 @@
         $saldoAumenta = $this->saldo;
 
         if($cantidad>0){
-        $saldoAumenta= $saldoAumenta + $cantidad;
+        $saldoAumenta= $saldoAumenta + $cantidad + self::valorDeposito($cantidad);
         echo "Tu saldo ahora es de ".$saldoAumenta;
         }
 
@@ -26,12 +26,11 @@
 
         if (($saldoDisminuye)>=$cantidad){
         $saldoDisminuye= $saldoDisminuye - $cantidad;
-        echo "Retiraste ".$cantidad." y tu saldo ahora es de ".$saldoDisminuye;
+        $saldoDisminuye = $this->impuestoRetiro($saldoDisminuye,$cantidad);
         }
             else if (($saldoDisminuye)<$cantidad && self::limite>=$cantidad){
                 $saldoDisminuye = $cantidad - self::limite;
                 echo "El monto restante de tu sobregiro es de ".$saldoDisminuye.", por lo que vas a tener que depositar los ".$cantidad." que retiraste, dentro de 30 dias";
-
             }
                 else if (($saldoDisminuye)<$cantidad && self::limite<$cantidad){
                     echo"El monto que pedís es mayor al limite de dinero que podes retirar a credito";
@@ -40,17 +39,22 @@
     }
 
     public function Transferir($nombre1,$transfiereSaldo,$cantidadTransferencia,$recibeSaldo,$nombre2){
-        
         if($transfiereSaldo>0){
             $transfiereSaldo = $transfiereSaldo - $cantidadTransferencia;
+            $transfiereSaldo = $this->impuestoTransferencia($transfiereSaldo,$nombre1,$cantidadTransferencia);
             $recibeSaldo = $recibeSaldo + $cantidadTransferencia;
 
-            echo "¡Transferencia existosa! ";
+            echo " ¡Transferencia existosa! ";
             echo $nombre1." acaba de transferir ".$cantidadTransferencia." pesos a ".$nombre2;
-            echo ". Ahora, el saldo de ".$nombre1." es de ".$transfiereSaldo.", y el de ",$nombre2." es de ".$recibeSaldo;
+            echo ". Ahora, el saldo ".$nombre2." es de ".$recibeSaldo;
         }
 
     }
-//amongus
+
+    private static function valorDeposito($cantidad){
+        if($cantidad > 500){
+            return 100;    
+        }
+    }
 }
 ?>
