@@ -1,0 +1,22 @@
+TRABAJO GRUPO
+Sistema de toma de asistencia 
+	Utilizar
+php:Objetos
+	->herencia
+	->trait
+	->encapsulamiento
+	->statico
+html 
+	+Boostrap
+	+JavaScript
+mysql
+	->Persista(Todo se guarda)
+
+Hacer
+	-Alta baja modificacion de alumnos (Nombre,apellido,dni,fecha nacimiento)
+	-Interfaz grafica
+	-Cargar asistencia
+	-Porcentaje de asistencias(Promociona si o no)
+	-Validacion(Si hay duplicado avisar)
+	-Listado alfabeticamente por apellido
+*/
