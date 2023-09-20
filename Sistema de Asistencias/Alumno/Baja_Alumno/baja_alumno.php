@@ -20,7 +20,6 @@
 <?php
     require_once('../../../SistemaDeAsistencias/BD/conexion.php');
 
-    
     $listadoAlumnos = "Select * from alumno";
     $preparo = $connection -> prepare($listadoAlumnos);
     $preparo -> execute();
