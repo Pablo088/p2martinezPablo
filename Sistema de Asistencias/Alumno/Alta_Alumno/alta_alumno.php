@@ -18,7 +18,6 @@
 </body>
 </html>
 
-
 <?php
     require_once('../../../SistemaDeAsistencias/BD/conexion.php');
 
@@ -38,8 +37,6 @@
         echo($listado["fecha_nacimiento_alumno"]);
         echo" ";
     }
-
-    
 
     if(!empty($_POST["dni_alumno"]) && !empty($_POST["nombre_alumno"]) && !empty($_POST["apellido_alumno"]) && !empty($_POST["fecha_nacimiento_alumno"])){
         $dni_alumno = $_POST["dni_alumno"];
