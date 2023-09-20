@@ -22,21 +22,6 @@
 <?php
     require_once('../../../SistemaDeAsistencias/BD/conexion.php');
 
-    $dni_alumno = $_POST["dni_alumno"];
-    $nombre_alumno = $_POST["nombre_alumno"];
-    $apellido_alumno = $_POST["apellido_alumno"];
-    $fecha_nacimiento_alumno = $_POST["fecha_nacimiento_alumno"];
-
-    if(($dni_alumno && $nombre_alumno && $apellido_alumno && $fecha_nacimiento_alumno)<>null){
-        $contenedor = "INSERT INTO alumno (dni_alumno,nombre_alumno,apellido_alumno,fecha_nacimiento_alumno) values(:dni_alumno,:nombre_alumno,:apellido_alumno,:fecha_nacimiento_alumno)";
-        $alumno = $connection -> prepare($contenedor);
-        
-        $alumno -> bindParam(":dni_alumno",$dni_alumno);
-        $alumno -> bindParam(":nombre_alumno",$nombre_alumno);
-        $alumno -> bindParam(":apellido_alumno",$apellido_alumno);
-        $alumno -> bindParam(":fecha_nacimiento_alumno",$fecha_nacimiento_alumno);
-        $alumno -> execute();
-    }
     $listadoAlumnos = "Select * from alumno";
     $preparo = $connection -> prepare($listadoAlumnos);
     $preparo -> execute();
@@ -52,5 +37,23 @@
         echo" ";
         echo($listado["fecha_nacimiento_alumno"]);
         echo" ";
+    }
+
+    $dni_alumno = $_POST["dni_alumno"];
+    $nombre_alumno = $_POST["nombre_alumno"];
+    $apellido_alumno = $_POST["apellido_alumno"];
+    $fecha_nacimiento_alumno = $_POST["fecha_nacimiento_alumno"];
+
+    if(($dni_alumno && $nombre_alumno && $apellido_alumno && $fecha_nacimiento_alumno)<>null){
+        $contenedor = "INSERT INTO alumno (dni_alumno,nombre_alumno,apellido_alumno,fecha_nacimiento_alumno) values(:dni_alumno,:nombre_alumno,:apellido_alumno,:fecha_nacimiento_alumno)";
+        $alumno = $connection -> prepare($contenedor);
+        
+        $alumno -> bindParam(":dni_alumno",$dni_alumno);
+        $alumno -> bindParam(":nombre_alumno",$nombre_alumno);
+        $alumno -> bindParam(":apellido_alumno",$apellido_alumno);
+        $alumno -> bindParam(":fecha_nacimiento_alumno",$fecha_nacimiento_alumno);
+        $alumno -> execute();
+
+        header("location:alta_alumno.php");
     }
 ?>
