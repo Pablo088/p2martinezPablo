@@ -19,4 +19,5 @@ Hacer
 	-Porcentaje de asistencias(Promociona si o no)
 	-Validacion(Si hay duplicado avisar)
 	-Listado alfabeticamente por apellido
+	-Agregar porcentaje de asistencias (para ver si promociona)
 */
