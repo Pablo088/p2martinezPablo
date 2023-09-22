@@ -4,23 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar Alumno</title>
+    <link rel="stylesheet" href="/bootstrap/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 </head>
 <body>
     <form action="modificacion_alumno.php" method="post">
-        <div>
-            <h3>Ingrese el nombre y apellido del alumno que quiere modificar</h3>
+        <h1 class="mt-3" style="display:flex;justify-content:center;">Ingrese el nombre y apellido del alumno que quiere modificar</h1>
+        <div style="display: flex;justify-content: center;" class="mt-3">
             <input type="text" name="nombre_alumno_original" placeholder="Nombre original">
             <input type="text" name="apellido_alumno_original" placeholder="Apellido original">
         </div>
-        <div>
+        <div style="display: flex;justify-content: center;" class="mt-3">
         <input type="text" name="dni_alumno" placeholder="DNI">
             <input type="text" name="nombre_alumno" placeholder="Nombre">
             <input type="text" name="apellido_alumno" placeholder="Apellido">
             <input type="text" name="fecha_nacimiento_alumno" placeholder="Fecha de Nacimiento">
-            <input type="submit" value="Modificar">
+            <input type="submit" value="Modificar" class="btn btn-outline-primary">
         </div>
     </form>
-      <a href="/pagina_principal.html">Volver al inicio</a>
+    <a href="/pagina_principal.html"><button class="btn btn-outline-secondary">Volver a inicio</button></a>
 </body>
 </html>
 
