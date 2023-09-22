@@ -14,6 +14,7 @@
             <input type="submit" value="Borrar">
         </div>
     </form>
+      <a href="/pagina_principal.html">Volver al inicio</a>
 </body>
 </html>
 
