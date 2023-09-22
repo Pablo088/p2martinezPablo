@@ -15,6 +15,7 @@
             <input type="submit" value="Agregar">
         </div>
     </form>
+      <a href="/pagina_principal.html">Volver al inicio</a>
 </body>
 </html>
 
