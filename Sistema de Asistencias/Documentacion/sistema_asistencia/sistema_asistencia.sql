@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `alumno` (
   `dni_alumno` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `nombre_alumno` text,
   `apellido_alumno` text,
-  `fecha_nacimiento_alumno` text,
+  `fecha_nacimiento_alumno` date,
   PRIMARY KEY (`dni_alumno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `profesor` (
   `dni_profesor` varchar(50) NOT NULL,
   `nombre_profesor` text,
   `apellido_profesor` text,
-  `fecha_nacimiento_profesor` text,
+  `fecha_nacimiento_profesor` date,
   `materia` text,
   PRIMARY KEY (`dni_profesor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
