@@ -6,17 +6,21 @@
     <title>Modificar Alumno</title>
     <link rel="stylesheet" href="/bootstrap/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 </head>
-<body>
+<body class="bg-success bg-opacity-50">
+    <h1 class='mt-3 d-flex justify-content-center'>Elegí al alumno que quieras modificar</h1>
     <form action="modificacion_alumno.php" method="post">
-        <div style="display: flex;justify-content: center;" class="mt-3">
-        <input type="text" name="dni_alumno" placeholder="DNI">
-            <input type="text" id="alumno_nombre" name="nombre_alumno" placeholder="Nombre" value="">
-            <input type="text" name="apellido_alumno" placeholder="Apellido">
-            <input type="date" name="fecha_nacimiento_alumno" placeholder="Fecha de Nacimiento">
-            <input type="submit" value="Modificar" class="btn btn-outline-primary">
+        <div class='mt-3 d-flex justify-content-center'>
+            <input type="text" name="dni_alumno" placeholder="DNI">
+            <input type="text" id="nombre_alumno" name="nombre_alumno" placeholder="Nombre" value="">
+            <input type="text" id="apellido_alumno" name="apellido_alumno" placeholder="Apellido" value="">
+            <input type="date" id="fecha_nacimiento_alumno" name="fecha_nacimiento_alumno" placeholder="Fecha de Nacimiento" value="">
+            <input type="submit" value="Modificar" class="btn btn-primary">
         </div>
     </form>
-    <a href="/pagina_principal.html"><button class="btn btn-outline-secondary">Volver a inicio</button></a>
+    <div id="botones">
+        <a href="/pagina_principal.html"><button class="btn btn-secondary">Volver a inicio</button></a>
+        <a href="/Alumno/pagina_alumno.php"><button class="btn btn-secondary">Volver atrás</button></a>
+    </div>
 </body>
 </html>
 
@@ -29,7 +33,7 @@
     $alumnos = $preparo ->fetchAll();
 
     foreach($alumnos as $listado){
-        echo("<br>");
+        echo "<div class='mt-1 d-flex justify-content-center'>";
         echo($listado["dni_alumno"]);
         echo" ";
         echo($listado["nombre_alumno"]);
@@ -39,6 +43,7 @@
         echo($listado["fecha_nacimiento_alumno"]);
         echo" ";
         echo("<input type='button' name='actualizar' value='modificar' onclick='modificar()'>");
+        echo"</div>";
     }
 
     if(!empty($_POST["dni_alumno"]) && !empty($_POST["nombre_alumno"]) && !empty($_POST["apellido_alumno"]) && !empty($_POST["fecha_nacimiento_alumno"]) && !empty($_POST["apellido_alumno_original"]) && !empty($_POST["apellido_alumno_original"])){
@@ -59,12 +64,15 @@
         $alumno -> bindParam(":apellido_alumno_original",$apellido_alumno);
         $alumno -> execute();
 
-        header("location:modificacion_alumno.php");
+        echo "<div class='mt-1 d-flex justify-content-center'>¡Los datos del alumno fueron modificados exitosamente!</div>";
     }
 ?>
 
 <script>
     function modificar(){
-        
+        const nombre_alumno=document.getElementById("nombre_alumno");
+        const apellido_alumno=document.getElementById("apellido_alumno");
+        const nacimiento_alumno=document.getElementById("fecha_nacimiento_alumno");
+
     }
 </script>

@@ -6,43 +6,27 @@
     <title>Agregar Alumno</title>
     <link rel="stylesheet" href="/bootstrap/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 </head>
-<body>
-    <h1 style="display: flex; justify-content:center;">Ingresá el nombre y apellido del alumno que queres agregar</h1>
+<body class="bg-success bg-opacity-50">
+    <h1 class='mt-3 d-flex justify-content-center'>Ingresá el nombre y apellido del alumno que queres agregar</h1>
     <form action="alta_alumno.php" method="post">
-        <div id="contenedor" style="display: flex;justify-content: center;" class="mt-3">
+        <div id="contenedor" class='mt-3 d-flex justify-content-center'>
             <input type="text" name="dni_alumno" placeholder="DNI">
             <input type="text" name="nombre_alumno" placeholder="Nombre">
             <input type="text" name="apellido_alumno" placeholder="Apellido">
             <input type="date" name="fecha_nacimiento_alumno" placeholder="Fecha de Nacimiento">
-            <input type="submit" value="Agregar" class="btn btn-outline-primary">
+            <input type="submit" value="Agregar" class="btn btn-primary">
         </div>
     </form>
-    <a href="/pagina_principal.html"><button class="btn btn-outline-secondary">Volver a inicio</button></a>
+    <div id="botones">
+        <a href="/pagina_principal.html"><button class="btn btn-secondary">Volver a inicio</button></a>
+        <a href="/Alumno/pagina_alumno.php"><button class="btn btn-secondary">Volver atrás</button></a>
+    </div>
 </body>
 </html>
 
 
 <?php
     require_once('../../../SistemaDeAsistencias/BD/conexion.php');
-
-    $listadoAlumnos = "Select * from alumno";
-    $preparo = $connection -> prepare($listadoAlumnos);
-    $preparo -> execute();
-    $alumnos = $preparo ->fetchAll();
-
-    foreach($alumnos as $listado){
-        echo("<br>");
-        echo($listado["dni_alumno"]);
-        echo" ";
-        echo($listado["nombre_alumno"]);
-        echo" ";
-        echo($listado["apellido_alumno"]);
-        echo" ";
-        echo($listado["fecha_nacimiento_alumno"]);
-        echo" ";
-    }
-
-    
 
     if(!empty($_POST["dni_alumno"]) && !empty($_POST["nombre_alumno"]) && !empty($_POST["apellido_alumno"]) && !empty($_POST["fecha_nacimiento_alumno"])){
         $dni_alumno = $_POST["dni_alumno"];
@@ -59,6 +43,7 @@
         $alumno -> bindParam(":fecha_nacimiento_alumno",$fecha_nacimiento_alumno);
         $alumno -> execute();
 
-        header("location:alta_alumno.php");
+        echo "<div class='mt-1 d-flex justify-content-center'>¡El alumno fue agregado exitosamente!</div>";
+    
     }
 ?>
