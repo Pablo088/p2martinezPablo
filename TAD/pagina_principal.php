@@ -6,31 +6,26 @@
    $preparo -> execute();
    $alumnos = $preparo -> fetchAll();
 
-   $cantidadAsistencia = "Select * From asistencia";
-   $prepara = $connection -> prepare($cantidadAsistencia);
-   $prepara -> execute();
-   $asistencia = $prepara -> fetchAll();
-
    if(!empty($_POST["buscar"])){
     $dniBuscar = $_POST["buscar"];
    }
 
     foreach($alumnos as $baseAlumno){
-        $nombreAlumno = $baseAlumno["nombre_alumno"];
-        $apellidoAlumno = $baseAlumno["apellido_alumno"];
-       foreach ($asistencia as $asistencias){
-        if($dniBuscar == $asistencias["dni_alumno"] or $dniBuscar !== $asistencias["dni_alumno"]){
+        if($dniBuscar == $baseAlumno["dni_alumno"]){
+            $nombreAlumno = $baseAlumno["nombre_alumno"];
+            $apellidoAlumno = $baseAlumno["apellido_alumno"];
             $cantidadAsistencia = 1;
+            date_default_timezone_set(timezoneId:"America/Argentina/Buenos_Aires");
+            $fecha_hora = date("Y-m-d H:i");
 
-            $asistenciaAlumno = "INSERT INTO asistencia (dni_alumno,cantidad_asistencias) values(:dni_alumno,:cantidad_asistencias)";
-            $asisteAlumno = $connection -> prepare($asistenciaAlumno);
+            $contenedor = "INSERT INTO asistencia (dni_alumno,cantidad_asistencias,fecha_hora) values(:dni_alumno,:cantidad_asistencias,:fecha_hora)";
+            $asisteAlumno = $connection -> prepare($contenedor);
             $asisteAlumno -> bindParam(":dni_alumno",$dniBuscar);
             $asisteAlumno -> bindParam(":cantidad_asistencias",$cantidadAsistencia);
+            $asisteAlumno -> bindParam(":fecha_hora",$fecha_hora);
             $asisteAlumno -> execute();
 
             echo"<div class='mt-1 d-flex justify-content-center'>¡Se pudo agregar la asistencia a ".$nombreAlumno." ".$apellidoAlumno." !</div>";
-
         } 
-       }
     }
 ?>
