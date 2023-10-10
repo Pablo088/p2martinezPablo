@@ -1,9 +1,6 @@
 <?php
    require_once("../TAD/BD/conexion.php");
 
-   $cantidadAlumnos = "Select * From alumno";
-   $alumnos = mysqli_query($connection,$cantidadAlumnos);
-
 if(isset($_POST["enviar"])){
     if(!empty($_POST["buscar"])){
         $dniBuscar = $_POST["buscar"];
@@ -12,19 +9,20 @@ if(isset($_POST["enviar"])){
        }
 }
 
-    foreach($alumnos as $baseAlumno){
-        if($dniBuscar == $baseAlumno["dni_alumno"]){
-            $nombreAlumno = $baseAlumno["nombre_alumno"];
-            $apellidoAlumno = $baseAlumno["apellido_alumno"];
+$cantidadAlumnos = "Select * From alumno where dni_alumno = '$dniBuscar'";
+$resultado = mysqli_query($connection,$cantidadAlumnos);
+$alumnos = $resultado -> fetch_assoc();
+
+        if($dniBuscar == $alumnos["dni_alumno"]){
+            $nombreAlumno = $alumnos["nombre_alumno"];
+            $apellidoAlumno = $alumnos["apellido_alumno"];
             date_default_timezone_set(timezoneId:"America/Argentina/Buenos_Aires");
             $fecha_hora = date("Y-m-d H:i");
 
             $contenedor = "INSERT INTO asistencia (dni_alumno,fecha_hora) values('$dniBuscar','$fecha_hora')";
             $asisteAlumno = mysqli_query($connection,$contenedor);
             if($asisteAlumno){
-                echo"<div class='mt-1 d-flex justify-content-center'>¡Se pudo agregar la asistencia a ".$nombreAlumno." ".$apellidoAlumno." !</div>";
-            }
-            break;
+                echo"<div class='mt-S1 d-flex justify-content-center'>¡Se pudo agregar la asistencia a ".$nombreAlumno." ".$apellidoAlumno." !</div>";
         } 
     }
 ?>

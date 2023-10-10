@@ -28,9 +28,7 @@
     require_once('../../../TAD/BD/conexion.php');
 
     $listadoAlumnos = "Select * from alumno";
-    $preparo = $connection -> prepare($listadoAlumnos);
-    $preparo -> execute();
-    $alumnos = $preparo ->fetchAll();
+    $alumnos = mysqli_query($connection,$listadoAlumnos);
 
     foreach($alumnos as $listado){
         echo "<div class='mt-1 d-flex justify-content-center'>";
@@ -42,7 +40,7 @@
         echo" ";
         echo($listado["fecha_nacimiento_alumno"]);
         echo" ";
-        echo("<input type='button' name='actualizar' value='modificar' onclick='modificar()'>");
+        echo("<input type='button' name='actualizar' value='modificar'>");
         echo"</div>";
     }
 
@@ -53,26 +51,9 @@
         $apellido_alumno = $_POST["apellido_alumno"];
         $fecha_nacimiento_alumno = $_POST["fecha_nacimiento_alumno"];
         
-        $contenedor = "UPDATE alumno SET dni_alumno=:dni_alumno,nombre_alumno=:nombre_alumno,apellido_alumno=:apellido_alumno,fecha_nacimiento_alumno=:fecha_nacimiento_alumno WHERE nombre_alumno=:nombre_alumno_original and apellido_alumno = :apellido_alumno_original";
-        $alumno = $connection -> prepare($contenedor);
-    
-        $alumno -> bindParam(":dni_alumno",$dni_alumno);
-        $alumno -> bindParam(":nombre_alumno",$nombre_alumno);
-        $alumno -> bindParam(":apellido_alumno",$apellido_alumno);
-        $alumno -> bindParam(":fecha_nacimiento_alumno",$fecha_nacimiento_alumno);
-        $alumno -> bindParam(":nombre_alumno_original",$nombre_original);
-        $alumno -> bindParam(":apellido_alumno_original",$apellido_alumno);
-        $alumno -> execute();
+        $contenedor = "UPDATE alumno SET dni_alumno='$dni_alumno',nombre_alumno='$nombre_alumno',apellido_alumno='$apellido_alumno',fecha_nacimiento_alumno='$fecha_nacimiento_alumno'";
+        $alumno = mysqli_query($connection,$contenedor);
 
         echo "<div class='mt-1 d-flex justify-content-center'>¡Los datos del alumno fueron modificados exitosamente!</div>";
     }
 ?>
-
-<script>
-    function modificar(){
-        const nombre_alumno=document.getElementById("nombre_alumno");
-        const apellido_alumno=document.getElementById("apellido_alumno");
-        const nacimiento_alumno=document.getElementById("fecha_nacimiento_alumno");
-
-    }
-</script>
