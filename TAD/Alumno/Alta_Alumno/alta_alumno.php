@@ -34,16 +34,9 @@
         $apellido_alumno = $_POST["apellido_alumno"];
         $fecha_nacimiento_alumno = $_POST["fecha_nacimiento_alumno"];
         
-        $contenedor = "INSERT INTO alumno (dni_alumno,nombre_alumno,apellido_alumno,fecha_nacimiento_alumno) values(:dni_alumno,:nombre_alumno,:apellido_alumno,:fecha_nacimiento_alumno)";
-        $alumno = $connection -> prepare($contenedor);
-        
-        $alumno -> bindParam(":dni_alumno",$dni_alumno);
-        $alumno -> bindParam(":nombre_alumno",$nombre_alumno);
-        $alumno -> bindParam(":apellido_alumno",$apellido_alumno);
-        $alumno -> bindParam(":fecha_nacimiento_alumno",$fecha_nacimiento_alumno);
-        $alumno -> execute();
+        $contenedor = "INSERT INTO alumno (dni_alumno,nombre_alumno,apellido_alumno,fecha_nacimiento_alumno) values('$dni_alumno','$nombre_alumno','$apellido_alumno','$fecha_nacimiento_alumno')";
+        $alumno = mysqli_query($connection,$contenedor);
 
         echo "<div class='mt-1 d-flex justify-content-center'>¡El alumno fue agregado exitosamente!</div>";
-    
     }
 ?>

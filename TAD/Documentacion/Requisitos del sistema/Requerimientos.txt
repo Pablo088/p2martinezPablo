@@ -21,4 +21,3 @@ Hacer
 	-Listado alfabeticamente por apellido
 	-Agregar porcentaje de asistencias (para ver si promociona)
 */
-	_Parametros: Fecha y hora.

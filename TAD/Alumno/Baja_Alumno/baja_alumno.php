@@ -31,11 +31,7 @@
         $apellido_original = $_POST["apellido_alumno_original"];
         
         $contenedor = "DELETE  FROM alumno WHERE nombre_alumno = :nombre_alumno_original and apellido_alumno = :apellido_alumno_original";
-        $alumno = $connection -> prepare($contenedor);
-    
-        $alumno -> bindParam(":nombre_alumno_original",$nombre_original);
-        $alumno -> bindParam(":apellido_alumno_original",$apellido_original);
-        $alumno -> execute();
+        $alumno = mysqli_query($connection,$contenedor);
 
         echo "<div class='mt-3 d-flex justify-content-center'>¡El alumno fue eliminado exitosamente!</div>";
     }
