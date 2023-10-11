@@ -16,11 +16,6 @@
             <input type="submit" value="Agregar" class="btn btn-primary">
         </div>
     </form>
-    <div class="m-4 container d-flex justify-content-center">
-            <a href="/pagina_principal.html"><button class="btn btn-secondary">Inicio</button></a>
-            <a href="/Alumno/pagina_alumno.php"><button class="btn btn-secondary">Atrás</button></a>
-    </div>
-    
 </body>
 </html>
 
@@ -37,6 +32,9 @@
         $contenedor = "INSERT INTO alumno (dni_alumno,nombre_alumno,apellido_alumno,fecha_nacimiento_alumno) values('$dni_alumno','$nombre_alumno','$apellido_alumno','$fecha_nacimiento_alumno')";
         $alumno = mysqli_query($connection,$contenedor);
 
-        echo "<div class='mt-1 d-flex justify-content-center'>¡El alumno fue agregado exitosamente!</div>";
+        if($alumno){
+            ?><script> alert("¡<?php echo $nombre_alumno." ".$apellido_alumno; ?> fue agregado!");
+              location.href ="alta_alumno.php";</script><?php
+        } 
     }
 ?>
