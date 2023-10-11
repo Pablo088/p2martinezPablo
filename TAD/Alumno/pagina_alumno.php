@@ -35,7 +35,7 @@
                     <td><?php echo $listado["apellido_alumno"]?></td>
                     <td><?php echo $listado["fecha_nacimiento_alumno"]?></td>
                     <td>
-                        <?php echo "<a href='/Alumno/Baja_Alumno/baja_alumno.php?dni=".$listado["dni_alumno"]."'><button class='btn btn-primary btn-lg'>Eliminar</button></a>"?>
+                        <a href='/Alumno/Baja_Alumno/baja_alumno.php?dni=<?php echo $listado["dni_alumno"]?>'><button class='btn btn-primary btn-lg' name='enviar'>Eliminar</button></a>
                         <a href='/Alumno/Modificacion_Alumno/modificacion_alumno.php?dni=<?php echo $listado["dni_alumno"]?>'><button class='btn btn-primary btn-lg' name='enviar'>Modificar</button></a>
         
                     </td>
