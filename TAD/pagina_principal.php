@@ -22,9 +22,8 @@ $alumnos = $resultado -> fetch_assoc();
             $contenedor = "INSERT INTO asistencia (dni_alumno,fecha_hora) values('$dniBuscar','$fecha_hora')";
             $asisteAlumno = mysqli_query($connection,$contenedor);
             if($asisteAlumno){
-                ?><script>alert("Se pudo agregar la asistencia para <?php echo $nombreAlumno." ".$apellidoAlumno ?>");
-                location.href="pagina_principal.html";
-                </script><?php
+                ?><script> alert("¡Se pudo cargar la asistencia para  <?php echo $nombreAlumno." ".$apellidoAlumno; ?>!");
+                  location.href ="pagina_principal.html";</script><?php
         } 
     }
 ?>
