@@ -30,9 +30,5 @@
             <input type="submit" name="enviar" class="btn btn-primary" value="Modificar">
         </div>
     </form>
-    <div class="m-4 container d-flex justify-content-center">
-            <a href="/pagina_principal.html"><button class="btn btn-secondary">Inicio</button></a>
-            <a href="/Alumno/pagina_alumno.php"><button class="btn btn-secondary">Atrás</button></a>
-    </div>
 </body>
 </html>
