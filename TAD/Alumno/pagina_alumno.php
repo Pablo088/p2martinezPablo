@@ -37,7 +37,7 @@
         echo" ";
         echo "<a href='Modificacion_Alumno/modificacion_alumno.php?id=".$listado['dni_alumno']."'>Modificar</a>";
         echo "|";
-        echo "<a href='Baja_Alumno/baja_alumno.php'>Eliminar</a>";
+        echo "<a href='Baja_Alumno/baja_alumno.php?id=".$listado['dni_alumno']."'>Eliminar</a>";
         echo"</div>";
     }
 ?>
