@@ -15,7 +15,7 @@
             <input type="text" name="apellido_profesor" placeholder="Apellido">
             <input type="date" name="fecha_nacimiento_profesor" placeholder="Fecha de Nacimiento">
             <input type="text" name="materia" placeholder="Materia">
-            <input type="submit" value="Agregar" class="btn btn-outline-primary">
+            <input type="submit" name="enviar" value="Agregar" class="btn btn-outline-primary">
         </div>
     </form>
     <a href="/pagina_principal.html"><button class="btn btn-outline-secondary">Volver a inicio</button></a>
@@ -24,12 +24,10 @@
 
 
 <?php
-    require_once('../../../SistemaDeAsistencias/BD/conexion.php');
+    require_once('../../../TAD/BD/conexion.php');
 
-    $listadoProfesor = "Select * from profesor";
-    $preparo = $connection -> prepare($listadoProfesor);
-    $preparo -> execute();
-    $profesor = $preparo ->fetchAll();
+    $listadoProfesor = "Select * from profesor";    
+    $profesor = mysqli_query($connection,$listadoProfesor);
 
     foreach($profesor as $listado){
         echo("<br>");
@@ -44,23 +42,18 @@
         echo($listado["materia"]);
         echo" ";
 
-        
-    if(!empty($_POST["dni_profesor"]) && !empty($_POST["nombre_profesor"]) && !empty($_POST["apellido_profesor"]) && !empty($_POST["fecha_nacimiento_profesor"]) && !empty($_POST["materia"])){
-        $dni_profesor = $_POST["dni_profesor"];
-        $nombre_profesor = $_POST["nombre_profesor"];
-        $apellido_profesor = $_POST["apellido_profesor"];
-        $fecha_nacimiento_profesor = $_POST["fecha_nacimiento_profesor"];
-        $materia = $_POST["materia"];
-        
-        $contenedor = "INSERT INTO profesor (dni_profesor,nombre_profesor,apellido_profesor,fecha_nacimiento_profesor,materia) values(:dni_profesor,:nombre_profesor,:apellido_profesor,:fecha_nacimiento_profesor,:materia)";
-        $profesor = $connection -> prepare($contenedor);
-        
-        $profesor -> bindParam(":dni_profesor",$dni_profesor);
-        $profesor -> bindParam(":nombre_profesor",$nombre_profesor);
-        $profesor -> bindParam(":apellido_profesor",$apellido_profesor);
-        $profesor -> bindParam(":fecha_nacimiento_profesor",$fecha_nacimiento_profesor);
-        $profesor -> bindParam(":materia",$materia);
-        $profesor -> execute();
-    }
+        if(isset($_POST["enviar"])){
+            if(!empty($_POST["dni_profesor"]) && !empty($_POST["nombre_profesor"]) && !empty($_POST["apellido_profesor"]) && !empty($_POST["fecha_nacimiento_profesor"]) && !empty($_POST["materia"])){
+                $dni_profesor = $_POST["dni_profesor"];
+                $nombre_profesor = $_POST["nombre_profesor"];
+                $apellido_profesor = $_POST["apellido_profesor"];
+                $fecha_nacimiento_profesor = $_POST["fecha_nacimiento_profesor"];
+                $materia = $_POST["materia"];
+                
+                $contenedor = "INSERT INTO profesor (dni_profesor,nombre_profesor,apellido_profesor,fecha_nacimiento_profesor,materia) values('$dni_profesor','$nombre_profesor','$apellido_profesor','$fecha_nacimiento_profesor','$materia')";
+                $profesor = mysqli_query($connection,$contenedor);
+                ?><script>alert("!<?php echo $nombre_profesor." ".$apellido_profesor?> fue registrado con exito!");</script><?php
+            }
+        }
     }
 ?>
