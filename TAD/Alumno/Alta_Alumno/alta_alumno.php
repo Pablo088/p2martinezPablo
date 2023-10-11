@@ -6,8 +6,7 @@
     <title>Agregar Alumno</title>
     <link rel="stylesheet" href="/bootstrap/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 </head>
-<body class="bg-success bg-opacity-50">
-    <h1 class='mt-3 d-flex justify-content-center'>Ingresá el nombre y apellido del alumno que queres agregar</h1>
+<body class="bg-info bg-opacity-50">
     <form action="alta_alumno.php" method="post">
         <div id="contenedor" class='mt-3 d-flex justify-content-center'>
             <input type="text" name="dni_alumno" placeholder="DNI">
@@ -17,10 +16,11 @@
             <input type="submit" value="Agregar" class="btn btn-primary">
         </div>
     </form>
-    <div id="botones">
-        <a href="/pagina_principal.html"><button class="btn btn-secondary">Volver a inicio</button></a>
-        <a href="/Alumno/pagina_alumno.php"><button class="btn btn-secondary">Volver atrás</button></a>
+    <div class="m-4 container d-flex justify-content-center">
+            <a href="/pagina_principal.html"><button class="btn btn-secondary">Inicio</button></a>
+            <a href="/Alumno/pagina_alumno.php"><button class="btn btn-secondary">Atrás</button></a>
     </div>
+    
 </body>
 </html>
 
