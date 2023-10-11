@@ -10,6 +10,9 @@
             $contenedor = "UPDATE alumno SET dni_alumno ='$dni_alumno',nombre_alumno = '$nombre_alumno',apellido_alumno='$apellido_alumno',fecha_nacimiento_alumno='$fecha_nacimieto_alumno' where dni_alumno = '$dni_alumno'";
             $actualizarAlumno = mysqli_query($connection,$contenedor);
 
-            echo"Alumno actualizado!";
+            if($actualizarAlumno){
+                ?><script> alert("¡Los datos fueron modificados!");
+                  location.href ="/Alumno/pagina_alumno.php";</script><?php
+            } 
     }
 ?>
