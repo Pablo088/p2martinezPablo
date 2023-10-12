@@ -16,6 +16,10 @@
             <input type="submit" value="Agregar" class="btn btn-primary">
         </div>
     </form>
+    <div class="d-flex justify-content-between">
+    <a href="/pagina_principal.html"><button class="btn btn-secondary">Inicio</button></a>    
+    <a href="/Alumno/pagina_alumno.php"><button class="btn btn-secondary">Atrás</button></a>
+    </div>
 </body>
 </html>
 
