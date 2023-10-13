@@ -2,7 +2,7 @@
     require_once('../../../TAD/BD/conexion.php');
     if(!empty($_GET["dni"])){
         $dni_alumno = $_GET["dni"];
-        $contenedor = "DELETE FROM alumno, asistencia where dni_alumno = '$dni_alumno'";
+        $contenedor = "DELETE FROM alumno where dni_alumno = '$dni_alumno'";
         $alumno = mysqli_query($connection,$contenedor);
 
         if($alumno){
