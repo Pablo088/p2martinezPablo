@@ -22,9 +22,9 @@ USE `sistema_asistencia`;
 -- Volcando estructura para tabla sistema_asistencia.alumno
 CREATE TABLE IF NOT EXISTS `alumno` (
   `dni_alumno` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `nombre_alumno` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `apellido_alumno` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `fecha_nacimiento_alumno` date DEFAULT NULL,
+  `nombre_alumno` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `apellido_alumno` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `fecha_nacimiento_alumno` date NOT NULL,
   PRIMARY KEY (`dni_alumno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -33,10 +33,9 @@ CREATE TABLE IF NOT EXISTS `alumno` (
 -- Volcando estructura para tabla sistema_asistencia.asistencia
 CREATE TABLE IF NOT EXISTS `asistencia` (
   `dni_alumno` varchar(50) DEFAULT NULL,
-  `cantidad_asistencias` int DEFAULT NULL,
   `fecha_hora` timestamp NULL DEFAULT NULL,
   KEY `alumno_asistencia` (`dni_alumno`),
-  CONSTRAINT `alumno_asistencia` FOREIGN KEY (`dni_alumno`) REFERENCES `alumno` (`dni_alumno`)
+  CONSTRAINT `alumno_asistencia` FOREIGN KEY (`dni_alumno`) REFERENCES `alumno` (`dni_alumno`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- La exportación de datos fue deseleccionada.
@@ -58,4 +57,3 @@ CREATE TABLE IF NOT EXISTS `profesor` (
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
-sistema_asistenciaalumnoasistenciaalumno
