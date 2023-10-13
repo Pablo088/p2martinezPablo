@@ -13,7 +13,7 @@
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +23,7 @@
 <body class="bg-info bg-opacity-50">
     <form action="/Alumno/Modificacion_Alumno/modificar_alumno.php" method="post">
         <div class='mt-3 d-flex justify-content-center'>
+            <input type="hidden" name="dni_antiguo" value="<?php echo $dni_alumno?>">
             <input type="text" name="dni_alumno" value="<?php echo $dni_alumno?>">
             <input type="text" name="nombre_alumno" value="<?php echo $nombre_alumno?>">
             <input type="text" name="apellido_alumno" value="<?php echo $apellido_alumno?>">
