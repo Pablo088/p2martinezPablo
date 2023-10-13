@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="/bootstrap/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 </head>
 <body class="bg-info bg-opacity-50">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand">TAD</a>
+        <div class=" me-auto">
+            <a href="/pagina_principal.html"><button class="btn btn-outline-info">Inicio</button></a>
+            <a href="/Alumno/pagina_alumno.php"> <button class="btn btn-outline-light">Alumno</button></a>
+            <a href="/Parametros/pagina_parametros.php"><button class="btn btn-outline-info">Configuración</button></a>
+        </div>
+    </nav>
     <form action="alta_alumno.php" method="post">
         <div id="contenedor" class='mt-3 d-flex justify-content-center'>
             <input type="text" name="dni_alumno" placeholder="DNI">
@@ -16,10 +24,7 @@
             <input type="submit" value="Agregar" class="btn btn-primary">
         </div>
     </form>
-    <div class="d-flex justify-content-between">
-    <a href="/pagina_principal.html"><button class="btn btn-secondary">Inicio</button></a>    
-    <a href="/Alumno/pagina_alumno.php"><button class="btn btn-secondary">Atrás</button></a>
-    </div>
+
 </body>
 </html>
 
