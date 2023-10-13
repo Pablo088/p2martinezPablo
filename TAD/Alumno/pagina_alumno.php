@@ -14,10 +14,17 @@
     <link rel="stylesheet" href="/bootstrap/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 </head>
 <body style="background-color: rgb(126, 184, 192);">
-    <a href="../pagina_principal.html"><button class="btn btn-secondary">Atrás</button></a>
-    <h1 style="display: flex; justify-content: center;color: antiquewhite; margin-top: 10px;" >Agregá, eliminá o modificá el alumno que quieras</h1>
+
+     <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand">TAD</a>
+        <div class="me-auto">
+            <a href="/pagina_principal.html"><button class="btn btn-outline-info">Inicio</button></a>
+            <a href="/Alumno/pagina_alumno.php"> <button class="btn btn-outline-light">Alumno</button></a>
+            <a href="/Parametros/pagina_parametros.php"><button class="btn btn-outline-info">Configuración</button></a>
+        </div>
+    </nav>
     <div class="d-flex justify-content-center">
-    <a href="/Alumno/Alta_Alumno/alta_alumno.php"><button class="btn btn-primary btn-lg">Agregar</button></a>
+    <a href="/Alumno/Alta_Alumno/alta_alumno.php"><button class="btn btn-outline-primary btn-lg mt-4">Agregar</button></a>
     </div>
     <div class="m-5" style="display: flex; justify-content: center;align-items: center;">
         <table class="table table-bordered table-hover">
