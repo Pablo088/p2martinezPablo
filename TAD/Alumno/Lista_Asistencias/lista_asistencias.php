@@ -52,7 +52,8 @@
                     <td><?php echo $asistencia["dni_alumno"]?></td>
                     <td><?php echo $asistencia["nombre_alumno"]?></td>
                     <td><?php echo $asistencia["apellido_alumno"]?></td>
-                    <td><?php echo $asistencia["fecha_nacimiento_alumno"]?></td>
+                    <td><?php $fecha_nacimiento = date("d/m/Y", strtotime($asistencia["fecha_nacimiento_alumno"]));
+                        echo $fecha_nacimiento?></td>
                     <td class="d-flex justify-content-center">Promocionado (<?php echo $contador."%" ?>)</td>
                 </tr>
                 <?php  }else if($contador >= $promedio_regularidad && $contador < $promedio_promocion){ ?>
@@ -60,7 +61,8 @@
                         <td><?php echo $asistencia["dni_alumno"]?></td>
                         <td><?php echo $asistencia["nombre_alumno"]?></td>
                         <td><?php echo $asistencia["apellido_alumno"]?></td>
-                        <td><?php echo $asistencia["fecha_nacimiento_alumno"]?></td>
+                        <td><?php $fecha_nacimiento = date("d/m/Y", strtotime($asistencia["fecha_nacimiento_alumno"]));
+                        echo $fecha_nacimiento?></td>
                         <td class="d-flex justify-content-center">Regular (<?php echo $contador."%" ?>)</td>
                     </tr>
                 <?php   } else if($contador < $promedio_regularidad){  ?>
@@ -68,7 +70,8 @@
                         <td><?php echo $asistencia["dni_alumno"]?></td>
                         <td><?php echo $asistencia["nombre_alumno"]?></td>
                         <td><?php echo $asistencia["apellido_alumno"]?></td>
-                        <td><?php echo $asistencia["fecha_nacimiento_alumno"]?></td>
+                        <td><?php $fecha_nacimiento = date("d/m/Y", strtotime($asistencia["fecha_nacimiento_alumno"]));
+                        echo $fecha_nacimiento?></td>
                         <td class="d-flex justify-content-center">Libre (<?php echo $contador."%" ?>)</td>
                     </tr>
                     <?php  }}?>
