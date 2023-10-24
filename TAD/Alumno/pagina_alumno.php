@@ -26,7 +26,7 @@
     </nav>
     <div class="d-flex justify-content-center">
     <a href="/Alumno/Alta_Alumno/alta_alumno.php"><button class="btn btn-outline-primary btn-lg mt-4 ">Agregar</button></a>
-    <a href="/Alumno/Lista_Asistencias/lista_asistencias.php"><button class="btn btn-outline-primary btn-lg mt-4 mx-2">Listado</button></a>
+    <a href="/Alumno/Lista_Asistencias/lista_asistencias.php"><button class="btn btn-outline-primary btn-lg mt-4 mx-2">Promedio de Asistencias</button></a>
     </div>
     <div class="m-5" style="display: flex; justify-content: center;align-items: center;">
         <table class="table table-bordered table-hover">
