@@ -7,17 +7,9 @@
     $promedio_regularidad = $promedioAlumno["promedio_regularidad"];
     $cantidad_dias = $promedioAlumno["cantidad_dias"];
     
-    $contenedorAlumno = "select * from alumno";
-    $alumnos = mysqli_query($connection,$contenedorAlumno);
-    $alumno = $alumnos -> fetch_assoc();
-    $dni = $alumno["dni_alumno"];
-    
-    $contenedorAsistencias = "select count(dni_alumno) from asistencia where dni_alumno = '$dni'";
+    $contenedorAsistencias = "select alumno.dni_alumno,nombre_alumno,apellido_alumno,fecha_nacimiento_alumno,count(asistencia.dni_alumno) FROM asistencia,alumno WHERE asistencia.dni_alumno = alumno.dni_alumno GROUP BY dni_alumno";
     $asistencias = mysqli_query($connection,$contenedorAsistencias);
-    $asistencia = $asistencias -> fetch_assoc();
-
-    $contador = $asistencia["count(dni_alumno)"];
-    $contador = (100 * $contador) / $cantidad_dias;
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +29,7 @@
         </div>
     </nav>
 
-    <div class="m-5" style="display: flex; justify-content: center;align-items: center;">
+  <div class="m-5" style="display: flex; justify-content: center;align-items: center;">
         <table class="table table-bordered table-hover">
             <thead>
                 <tr class="table table-info">
@@ -51,35 +43,38 @@
             <tbody>
                 <?php  
                
-                    foreach($alumnos as $alumno){
+                    foreach($asistencias as $asistencia){
+                        $contador = $asistencia["count(asistencia.dni_alumno)"];
+                        $contador = (100 * $contador) / $cantidad_dias;
                         if($contador >= $promedio_promocion){
                 ?>
                 <tr class="table table-success">
-                    <td><?php echo $alumno["dni_alumno"]?></td>
-                    <td><?php echo $alumno["nombre_alumno"]?></td>
-                    <td><?php echo $alumno["apellido_alumno"]?></td>
-                    <td><?php echo $alumno["fecha_nacimiento_alumno"]?></td>
-                    <td class="d-flex justify-content-center">Promocion (<?php echo $contador."%" ?>)</td>
+                    <td><?php echo $asistencia["dni_alumno"]?></td>
+                    <td><?php echo $asistencia["nombre_alumno"]?></td>
+                    <td><?php echo $asistencia["apellido_alumno"]?></td>
+                    <td><?php echo $asistencia["fecha_nacimiento_alumno"]?></td>
+                    <td class="d-flex justify-content-center">Promocionado (<?php echo $contador."%" ?>)</td>
                 </tr>
                 <?php  }else if($contador >= $promedio_regularidad && $contador < $promedio_promocion){ ?>
                     <tr class="table table-warning">
-                        <td><?php echo $alumno["dni_alumno"]?></td>
-                        <td><?php echo $alumno["nombre_alumno"]?></td>
-                        <td><?php echo $alumno["apellido_alumno"]?></td>
-                        <td><?php echo $alumno["fecha_nacimiento_alumno"]?></td>
+                        <td><?php echo $asistencia["dni_alumno"]?></td>
+                        <td><?php echo $asistencia["nombre_alumno"]?></td>
+                        <td><?php echo $asistencia["apellido_alumno"]?></td>
+                        <td><?php echo $asistencia["fecha_nacimiento_alumno"]?></td>
                         <td class="d-flex justify-content-center">Regular (<?php echo $contador."%" ?>)</td>
                     </tr>
                 <?php   } else if($contador < $promedio_regularidad){  ?>
                     <tr class="table table-danger">
-                        <td><?php echo $alumno["dni_alumno"]?></td>
-                        <td><?php echo $alumno["nombre_alumno"]?></td>
-                        <td><?php echo $alumno["apellido_alumno"]?></td>
-                        <td><?php echo $alumno["fecha_nacimiento_alumno"]?></td>
+                        <td><?php echo $asistencia["dni_alumno"]?></td>
+                        <td><?php echo $asistencia["nombre_alumno"]?></td>
+                        <td><?php echo $asistencia["apellido_alumno"]?></td>
+                        <td><?php echo $asistencia["fecha_nacimiento_alumno"]?></td>
                         <td class="d-flex justify-content-center">Libre (<?php echo $contador."%" ?>)</td>
                     </tr>
-                    <?php  }} ?>
+                    <?php  }}?>
             </tbody>
         </table>
-    </div>
+    </div> 
+
 </body>
 </html>
