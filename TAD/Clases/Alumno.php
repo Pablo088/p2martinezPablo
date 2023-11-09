@@ -21,8 +21,12 @@
             return $contenedor;
         }
 
-        public static function contadorAsistencias(){
+        public static function listaAsistencias(){
             $contenedorAsistencias = "select alumno.dni_alumno,nombre_alumno,apellido_alumno,fecha_nacimiento_alumno,count(asistencia.dni_alumno) FROM asistencia,alumno WHERE asistencia.dni_alumno = alumno.dni_alumno GROUP BY dni_alumno";
+            return $contenedorAsistencias;
+        }
+        public static function contadorAsistencias($dni){
+            $contenedorAsistencias = "select count(dni_alumno) FROM asistencia WHERE dni_alumno = '$dni'";
             return $contenedorAsistencias;
         }
 
