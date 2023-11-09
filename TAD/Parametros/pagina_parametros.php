@@ -11,7 +11,6 @@
     $promedio_promocion = $configuracion["promedio_promocion"];
     $promedio_regularidad = $configuracion["promedio_regularidad"];
     $edad_minima = $configuracion["edad_minima"];
-    $tolerancia = $configuracion["tolerancia"];
 
 
 ?>
@@ -45,8 +44,6 @@
                 <input type="number" name="promedio_regularidad" value="<?php echo $promedio_regularidad ?>" >
                 <h3>Edad Minima</h3>
                 <input type="number" name="edad_minima" value="<?php echo $edad_minima ?>" >
-                <h3>Tiempo de Tolerancia</h3>
-                <input type="time" step="2" name="tolerancia" value="<?php echo $tolerancia ?>" >
                 <p><input type="submit" name="enviar" class="btn btn-primary mt-4" value="Guardar"></p>
             </div>
         </div>
