@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistencia Tardia</title>
+    <link rel="stylesheet" href="/bootstrap/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+</head>
+<body style="background-image: url('Imagenes/Fondo_de_pantalla.png') ; background-repeat: no-repeat; background-position: center top; background-size: cover ;max-width: 100%; max-height: 100%; ">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand mx-2">TAD</a>
+        <div class="me-auto">
+            <a href="/pagina_principal.html"><button class="btn btn-outline-light">Inicio</button></a>
+            <a href="/Alumno/pagina_alumno.php"> <button class="btn btn-outline-info">Alumno</button></a>
+            <a href="/Parametros/pagina_parametros.php"><button class="btn btn-outline-info">Configuración</button></a>
+        </div>
+    </nav>
+
+    <form action="pagina_asistencia_tardia.php" method="post">
+        <h3>DNI</h3>
+        <input type="text" name="dni_alumno" placeholder="DNI">
+        <h3>Fecha</h3>
+        <input type="datetime-local" name="fecha" placeholder="Fecha">
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
