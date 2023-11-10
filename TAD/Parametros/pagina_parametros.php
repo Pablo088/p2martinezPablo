@@ -32,20 +32,20 @@
             <a href="/Parametros/pagina_parametros.php"><button class="btn btn-outline-light">Configuración</button></a>
         </div>
     </nav>
-    <form action="/Parametros/configuracion.php" method="post">
+
+    <h1 class="d-flex justify-content-center border border-3 border-primary rounded-start mx-5 m-4 bg-black text-white">Configuración</h1>
+    <form action="/Parametros/configuracion.php" method="post" class="d-flex justify-content-center m-4 border border-3 border-primary rounded-start mx-5 text-white bg-black">
+
         <div>
-            <div class="align-items-centre">
-                <h1>Configuración</h1>
-                <h3>Cantidad de días</h3>
-                <input type="number" name="cantidad_dias" value="<?php echo $cantidad_dias ?>">
+                <h3>Cantidad de Días de Clases</h3>
+                <input type="number" name="cantidad_dias" value="<?php echo $cantidad_dias ?>" class="form-control bg-light text-black">
                 <h3>Promedio de Promocion</h3>
-                <input type="number" name="promedio_promocion" value="<?php echo $promedio_promocion ?>" >
-                <h3>Promedio de regularidad</h3>
-                <input type="number" name="promedio_regularidad" value="<?php echo $promedio_regularidad ?>" >
+                <input type="number" name="promedio_promocion" value="<?php echo $promedio_promocion ?>" class="form-control bg-success">
+                <h3>Promedio de Regularidad</h3>
+                <input type="number" name="promedio_regularidad" value="<?php echo $promedio_regularidad ?>" class="form-control bg-warning">
                 <h3>Edad Minima</h3>
-                <input type="number" name="edad_minima" value="<?php echo $edad_minima ?>" >
-                <p><input type="submit" name="enviar" class="btn btn-primary mt-4" value="Guardar"></p>
-            </div>
+                <input type="number" name="edad_minima" value="<?php echo $edad_minima ?>" class="form-control bg-light">
+                <p><input type="submit" name="enviar" class="btn btn-light m-4 btn-lg" value="Guardar"></p>
         </div>
     </form>
 </body>
