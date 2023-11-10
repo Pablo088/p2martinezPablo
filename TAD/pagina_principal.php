@@ -1,3 +1,8 @@
+   /* cosas a arreglar:
+   1- El get de lista_asistencias
+   2- Edad minima
+   3- que no se borren las asistencias al modificar el alumno */
+
 <?php
 //modificar
    require_once("../TAD/BD/conexion.php");
@@ -46,4 +51,5 @@ if(isset($_POST["enviar"])){
         location.href ='pagina_principal.html';</script>";
        }
 }
-?>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+?>              
+
