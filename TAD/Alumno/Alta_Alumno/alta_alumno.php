@@ -1,5 +1,21 @@
+<?php
+ require_once("../../../TAD/BD/conexion.php");
+ require_once("../../../TAD/Clases/Alumno.php");
+ require_once("../../../TAD/Clases/Persona.php");
+ require_once("../../../TAD/Clases/Parametro.php");
+
+ $BD = new BD();
+
+ $minimo = Parametro::edadMinima();
+ $contenedor = $BD->Ejecutar($minimo);
+ $edad_minima = $contenedor -> fetch_assoc();
+
+?>
+
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,60 +36,75 @@
             <input type="text" name="dni_alumno" placeholder="DNI">
             <input type="text" name="nombre_alumno" placeholder="Nombre">
             <input type="text" name="apellido_alumno" placeholder="Apellido">
-            <input type="date" name="fecha_nacimiento_alumno" placeholder="Fecha de Nacimiento">
+            <input type="date" name="fecha_nacimiento_alumno" placeholder="Fecha de Nacimiento">   
             <input type="submit" value="Agregar" class="btn btn-primary">
         </div>
     </form>
+     <script> 
+        function validarEdad(){
+            var nacimiento = document.getElementById('fecha_nacimiento_alumno').value;
+            var edad_minima = <?php echo $edad_minima ?>
+            var fecha_actual = new Date();
+            var fecha_nacimiento = new Date(nacimiento);
+            var edad_alumno = fecha_actual.getFullYear() - fecha_nacimiento.getFullYear();
+
+            console.log (edad_alumno)
+            console.log (edad_minima)
+
+            if (edad_alumno < edad_minima){
+                <?php  $edad = "menor"  ?>
+            }else{
+                <?php  $edad = "mayor"  ?>
+            }
+        }
+    </script> 
 </body>
 </html>
 
 
 <?php
-//mejorar
-    require_once("../../../TAD/BD/conexion.php");
-    require_once("../../../TAD/Clases/Alumno.php");
-    require_once("../../../TAD/Clases/Persona.php");
+//mejorar  
+if(!empty($_POST["dni_alumno"]) && !empty($_POST["nombre_alumno"]) && !empty($_POST["apellido_alumno"]) && !empty($_POST["fecha_nacimiento_alumno"])){
+    
+    
+    $dni_alumno = $_POST["dni_alumno"];
 
-    if(!empty($_POST["dni_alumno"]) && !empty($_POST["nombre_alumno"]) && !empty($_POST["apellido_alumno"]) && !empty($_POST["fecha_nacimiento_alumno"])){
-        $BD = new BD();
-        
-        $dni_alumno = $_POST["dni_alumno"];
+    $alumnoDni = Alumno::buscarDNI($dni_alumno);
+    $contenedorAlumno = $BD ->Ejecutar($alumnoDni);
+    $dni_comparar = $contenedorAlumno -> fetch_assoc();
 
-        $alumnoDni = Alumno::buscarDNI($dni_alumno);
-        $contenedorAlumno = $BD ->Ejecutar($alumnoDni);
-        $dni_comparar = $contenedorAlumno -> fetch_assoc();
+    if($dni_alumno == $dni_comparar["dni_alumno"]){
+        echo"<script> alert('El DNI que ingresaste ya existe');
+        location.href ='alta_alumno.php';</script>";
+    }
 
-        if($dni_alumno == $dni_comparar["dni_alumno"]){
-            echo"<script> alert('El DNI que ingresaste ya existe');
-            location.href ='alta_alumno.php';</script>";
-        }
+    $nombre_alumno = $_POST["nombre_alumno"];
+    $apellido_alumno = $_POST["apellido_alumno"];
+    $fecha_nacimiento_alumno = $_POST["fecha_nacimiento_alumno"];
 
-        $nombre_alumno = $_POST["nombre_alumno"];
-        $apellido_alumno = $_POST["apellido_alumno"];
-        $fecha_nacimiento_alumno = $_POST["fecha_nacimiento_alumno"];
+    /*date_default_timezone_set(timezoneId:"America/Argentina/Buenos_Aires");
+    $fecha_actual = date("Y-m-d");
+    $edad_alumno = $fecha_nacimiento_alumno-> diff($fecha_actual);
 
-       /* date_default_timezone_set(timezoneId:"America/Argentina/Buenos_Aires");
-        $fecha_actual = date("Y-m-d");
-        $edad_alumno = $fecha_actual - $fecha_nacimiento_alumno;
+    $minimo = Parametro::edadMinima();
+    $contenedor = $BD->Ejecutar($minimo);
+    $edad_alumno = $contenedor -> fetch_assoc();*/
 
-        $minimo = Alumno::edadMinima();
-        $contenedor = $BD->Ejecutar($minimo);
-        $edad_alumno = $contenedor -> fetch_assoc();
-
-        if ($edad_alumno < $edad_minima){
-            echo"<script> alert('La edad del alumno no es suficiente para pasar la inscripcion');
-            location.href ='alta_alumno.php';</script>"; 
-        }*/
-        
-       $alumno = new Alumno($dni_alumno,$nombre_alumno,$apellido_alumno,$fecha_nacimiento_alumno);
-       $insertar = Alumno::insertarAlumno($alumno);
-       $insertarAlumno = $BD -> Ejecutar($insertar);
+    if ($edad === "menor"){
+        echo"<script> alert('La edad del alumno no es suficiente para pasar la inscripcion');
+        location.href ='alta_alumno.php';</script>"; 
+        }else{
+    
+        $alumno = new Alumno($dni_alumno,$nombre_alumno,$apellido_alumno,$fecha_nacimiento_alumno);
+        $insertar = Alumno::insertarAlumno($alumno);
+        $insertarAlumno = $BD -> Ejecutar($insertar);
         
 
         if($insertarAlumno){
             ?><script> alert("¡<?php echo $nombre_alumno." ".$apellido_alumno; ?> fue agregado!");
-              location.href ="alta_alumno.php";</script><?php
+                location.href ="alta_alumno.php";</script><?php
         }
-     }
+    }
+}
 
 ?>
