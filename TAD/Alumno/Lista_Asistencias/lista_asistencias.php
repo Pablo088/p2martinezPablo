@@ -13,9 +13,9 @@
     $promedio_promocion = $promedioAlumno["promedio_promocion"];
     $promedio_regularidad = $promedioAlumno["promedio_regularidad"];
     $cantidad_dias = $promedioAlumno["cantidad_dias"];
-    
-    $contenedorAsistencias = Alumno::contadorAsistencias();
-    $asistencias = $BD -> Ejecutar($contenedorAsistencias);
+
+    $contendorAlumno = Alumno::listaAlumnos();
+    $alumno = $BD -> Ejecutar($contendorAlumno);
     
 ?>
 <!DOCTYPE html>
@@ -50,38 +50,43 @@
             <tbody>
                 <?php  
                
-                    foreach($asistencias as $asistencia){
-                        $contador = $asistencia["count(asistencia.dni_alumno)"];
+                    
+                    foreach($alumno as $alumnos){
+                            $contenedorAsistencias = Alumno::contadorAsistencias($alumnos["dni_alumno"]);
+                            $asistencias = $BD -> Ejecutar($contenedorAsistencias);
+
+                    foreach($asistencias as $asistencia){        
+                        $contador = $asistencia["count(dni_alumno)"];
                         $contador = (100 * $contador) / $cantidad_dias;
                         if($contador >= $promedio_promocion){
                 ?>
                 <tr class="table table-success">
-                    <td><?php echo $asistencia["dni_alumno"]?></td>
-                    <td><?php echo $asistencia["nombre_alumno"]?></td>
-                    <td><?php echo $asistencia["apellido_alumno"]?></td>
-                    <td><?php $fecha_nacimiento = date("d/m/Y", strtotime($asistencia["fecha_nacimiento_alumno"]));
+                    <td><?php echo $alumnos['dni_alumno']?></td>
+                    <td><?php echo $alumnos['nombre_alumno']?></td>
+                    <td><?php echo $alumnos['apellido_alumno']?></td>
+                    <td><?php $fecha_nacimiento = date("d/m/Y", strtotime($alumnos['fecha_nacimiento_alumno']));
                         echo $fecha_nacimiento?></td>
                     <td class="d-flex justify-content-center">Promocionado (<?php echo $contador."%" ?>)</td>
                 </tr>
                 <?php  }else if($contador >= $promedio_regularidad && $contador < $promedio_promocion){ ?>
                     <tr class="table table-warning">
-                        <td><?php echo $asistencia["dni_alumno"]?></td>
-                        <td><?php echo $asistencia["nombre_alumno"]?></td>
-                        <td><?php echo $asistencia["apellido_alumno"]?></td>
-                        <td><?php $fecha_nacimiento = date("d/m/Y", strtotime($asistencia["fecha_nacimiento_alumno"]));
+                        <td><?php echo $alumnos['dni_alumno']?></td>
+                        <td><?php echo $alumnos['nombre_alumno']?></td>
+                        <td><?php echo $alumnos['apellido_alumno']?></td>
+                        <td><?php $fecha_nacimiento = date("d/m/Y", strtotime($alumnos['fecha_nacimiento_alumno']));
                         echo $fecha_nacimiento?></td>
                         <td class="d-flex justify-content-center">Regular (<?php echo $contador."%" ?>)</td>
                     </tr>
                 <?php   } else if($contador < $promedio_regularidad){  ?>
                     <tr class="table table-danger">
-                        <td><?php echo $asistencia["dni_alumno"]?></td>
-                        <td><?php echo $asistencia["nombre_alumno"]?></td>
-                        <td><?php echo $asistencia["apellido_alumno"]?></td>
-                        <td><?php $fecha_nacimiento = date("d/m/Y", strtotime($asistencia["fecha_nacimiento_alumno"]));
+                        <td><?php echo $alumnos['dni_alumno']?></td>
+                        <td><?php echo $alumnos['nombre_alumno']?></td>
+                        <td><?php echo $alumnos['apellido_alumno']?></td>
+                        <td><?php $fecha_nacimiento = date("d/m/Y", strtotime($alumnos['fecha_nacimiento_alumno']));
                         echo $fecha_nacimiento?></td>
                         <td class="d-flex justify-content-center">Libre (<?php echo $contador."%" ?>)</td>
                     </tr>
-                    <?php  }}?>
+                    <?php  }}}?>
             </tbody>
         </table>
     </div> 
