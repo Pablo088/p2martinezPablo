@@ -45,7 +45,7 @@
                 <input type="number" name="promedio_regularidad" value="<?php echo $promedio_regularidad ?>" class="form-control bg-warning">
                 <h3>Edad Minima</h3>
                 <input type="number" name="edad_minima" value="<?php echo $edad_minima ?>" class="form-control bg-light">
-                <p><input type="submit" name="enviar" class="btn btn-light m-4 btn-lg" value="Guardar"></p>
+                <p class="d-flex justify-content-center"><input type="submit" name="enviar" class="btn btn-light m-4 btn-lg" value="Guardar"></p>
         </div>
     </form>
 </body>
