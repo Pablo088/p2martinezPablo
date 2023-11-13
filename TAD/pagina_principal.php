@@ -1,55 +1,36 @@
-   /* cosas a arreglar:
-   1- El get de lista_asistencias
-   2- Edad minima
-   3- que no se borren las asistencias al modificar el alumno */
-
 <?php
-//modificar
-   require_once("../TAD/BD/conexion.php");
-   require_once("../TAD/Clases/Alumno.php");
-   require_once("../TAD/Clases/Persona.php");
-   require_once("../TAD/Clases/Parametro.php");
-   $BD = new BD();
+    require_once("../TAD/BD/conexion.php");
+    require_once("../TAD/Clases/Alumno.php");
+    require_once("../TAD/Clases/Persona.php");
+    require_once("../TAD/Clases/Parametro.php");
 
-if(isset($_POST["enviar"])){
-    if(!empty($_POST["buscar"])){
-        $dniBuscar = $_POST["buscar"];
+    $BD = new BD();
 
-        $consulta = Alumno::buscarDNI($dniBuscar);
-        $contenedor = $BD -> Ejecutar($consulta);
-        $alumnos = $contenedor;
-        $alumno = $alumnos -> fetch_assoc();
+    if(!empty($_POST["dni_alumno"]) && !empty($_POST["fecha"])){
+        $dni_alumno = $_POST["dni_alumno"];
+        $fecha = $_POST["fecha"];
+
+        $contadorAsistencia = Alumno::contadorAsistencias($dni_alumno);
+        $contenedorAsistencia = $BD -> Ejecutar($contadorAsistencia);
+        $asistencia = $contenedorAsistencia -> fetch_assoc();
 
         $getParametro = Parametro::getParametros();
         $contenedorParametro = $BD -> Ejecutar($getParametro);
         $parametro = $contenedorParametro -> fetch_assoc();
 
-        $contadorAsistencia = Alumno::contadorAsistencias($dniBuscar);
-        $contenedorAsistencia = $BD -> Ejecutar($contadorAsistencia);
-        $asistencia = $contenedorAsistencia -> fetch_assoc();
+        if($asistencia["count(dni_alumno)"] >= $parametro["cantidad_dias"]){
+            echo"<script> alert('El alumno ya alcanzó el tope de asistencias');
+            location.href ='pagina_asistencia_tardia.html';</script>";
+        }else{
 
-        if($dniBuscar == $alumno['dni_alumno']){
-            date_default_timezone_set(timezoneId:"America/Argentina/Buenos_Aires");
-            $fecha_hora = date("Y-m-d H:i");
-            if ($asistencia['count(dni_alumno)'] >= $parametro['cantidad_dias']){
-                echo"<script> alert('El alumno ya alcanzó el tope de asistencias');
-                location.href ='pagina_principal.html';</script>";
-            }else{
-                $contenedorAsistencia = Alumno::insertarAsistencia($dniBuscar,$fecha_hora);
-                $ejecutarContenedor = $BD -> Ejecutar($contenedorAsistencia);
-                if($ejecutarContenedor){
-                     ?><script> alert("¡Se pudo cargar la asistencia!");
-                     location.href ="pagina_principal.html";</script><?php
-                 } 
+            $insertar = Alumno::insertarAsistencia($dni_alumno,$fecha);
+            $contenedor = $BD -> Ejecutar($insertar);
+
+            if($contenedor){
+                echo"<script> alert('¡Se pudo cargar la asistencia!');
+                location.href ='pagina_asistencia_tardia.html';</script>";
             }
-        } else{
-                echo"<script> alert('El dni que ingresaste no existe');
-                location.href ='pagina_principal.html';</script>";
-              }
-       } else{
-        echo"<script> alert('Ingresa un DNI');
-        location.href ='pagina_principal.html';</script>";
-       }
-}
-?>              
+        }
 
+    }
+?>
