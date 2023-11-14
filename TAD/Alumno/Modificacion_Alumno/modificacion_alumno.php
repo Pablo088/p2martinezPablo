@@ -39,7 +39,7 @@
             <input type="text" name="dni_alumno" value="<?php echo $dni_alumno?>">
             <input type="text" name="nombre_alumno" value="<?php echo $nombre_alumno?>">
             <input type="text" name="apellido_alumno" value="<?php echo $apellido_alumno?>">
-            <input type="date" name="fecha_nacimiento_alumno" max="2006-06-01" value="<?php echo $fecha_nacimiento_alumno?>">
+            <input type="date" name="fecha_nacimiento_alumno" max="2006-07-01" value="<?php echo $fecha_nacimiento_alumno?>">
             <input type="submit" name="enviar" class="btn btn-primary" value="Modificar">
         </div>
     </form>
