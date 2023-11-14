@@ -13,14 +13,6 @@
             $apellido_alumno = $_POST["apellido_alumno"];
             $fecha_nacimiento_alumno = $_POST["fecha_nacimiento_alumno"];
 
-            /*date_default_timezone_set(timezoneId:"America/Argentina/Buenos_Aires");
-            $fecha_actual = date('Y');
-            $edad_alumno = strtotime($fecha_actual) - strtotime($fecha_nacimiento_alumno);
-
-            $minimo = Parametro::edadMinima();
-            $contenedor = $BD->Ejecutar($minimo);
-            $edad_minima = $contenedor -> fetch_assoc();*/
-
             if ($edad_alumno < $edad_minima){
                 echo"<script> alert('<?php echo $edad_alumno ?>');
                 location.href ='/Alumno/pagina_alumno.php';</script>"; 
