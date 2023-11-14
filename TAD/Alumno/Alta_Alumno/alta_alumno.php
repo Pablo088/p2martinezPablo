@@ -48,7 +48,7 @@ $año_minimo = $fecha_actual - $edad_minima;
 
 
 <?php
-//mejorar  
+
 if(!empty($_POST["dni_alumno"]) && !empty($_POST["nombre_alumno"]) && !empty($_POST["apellido_alumno"]) && !empty($_POST["fecha_nacimiento_alumno"])){
     
     
