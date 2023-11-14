@@ -2,6 +2,8 @@
     require_once('../../../TAD/BD/conexion.php');
     require_once('../../../TAD/Clases/Alumno.php');
     require_once('../../../TAD/Clases/Persona.php');
+    require_once("../../../TAD/Clases/Parametro.php");
+
     $BD = new BD(); 
         if(!empty($_GET["dni"])){
             $dni_alumno = $_GET["dni"];
@@ -13,6 +15,15 @@
             $apellido_alumno = $alumno["apellido_alumno"];
             $fecha_nacimiento_alumno = $alumno["fecha_nacimiento_alumno"];
         }
+
+    $minimo = Parametro::edadMinima();
+    $contenedor = $BD->Ejecutar($minimo);
+    $edad_minima = $contenedor->fetch_assoc()['edad_minima'];
+
+    $fecha_actual = date('Y');
+
+    $año_minimo = $fecha_actual - $edad_minima;
+
 
 ?>
 <!DOCTYPE html>
@@ -39,7 +50,7 @@
             <input type="text" name="dni_alumno" value="<?php echo $dni_alumno?>">
             <input type="text" name="nombre_alumno" value="<?php echo $nombre_alumno?>">
             <input type="text" name="apellido_alumno" value="<?php echo $apellido_alumno?>">
-            <input type="date" name="fecha_nacimiento_alumno" max="2006-07-01" value="<?php echo $fecha_nacimiento_alumno?>">
+            <input type="date" name="fecha_nacimiento_alumno" max="<?php echo $año_minimo ?>-06-30"  value="<?php echo $fecha_nacimiento_alumno?>">
             <input type="submit" name="enviar" class="btn btn-primary" value="Modificar">
         </div>
     </form>
