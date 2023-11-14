@@ -32,7 +32,7 @@
             <input type="text" name="dni_alumno" placeholder="DNI">
             <input type="text" name="nombre_alumno" placeholder="Nombre">
             <input type="text" name="apellido_alumno" placeholder="Apellido">
-            <input type="date" max="2006-06-01" name="fecha_nacimiento_alumno" placeholder="Fecha de Nacimiento">   
+            <input type="date" max="2006-07-01" name="fecha_nacimiento_alumno" placeholder="Fecha de Nacimiento">   
             <input type="submit" value="Agregar" class="btn btn-primary">
         </div>
     </form>
