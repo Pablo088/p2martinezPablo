@@ -6,10 +6,6 @@
 
  $BD = new BD();
 
- $minimo = Parametro::edadMinima();
- $contenedor = $BD->Ejecutar($minimo);
- $edad_minima = $contenedor -> fetch_assoc();
-
 ?>
 
 
@@ -36,29 +32,10 @@
             <input type="text" name="dni_alumno" placeholder="DNI">
             <input type="text" name="nombre_alumno" placeholder="Nombre">
             <input type="text" name="apellido_alumno" placeholder="Apellido">
-            <input type="date" name="fecha_nacimiento_alumno" placeholder="Fecha de Nacimiento">   
+            <input type="date" max="2006-06-01" name="fecha_nacimiento_alumno" placeholder="Fecha de Nacimiento">   
             <input type="submit" value="Agregar" class="btn btn-primary">
         </div>
     </form>
-     <script> 
-        function validarEdad(){
-            var nacimiento = document.getElementById('fecha_nacimiento_alumno').value;
-            var edad_minima = <?php echo $edad_minima ?>
-            var fecha_actual = new Date();
-            var fecha_nacimiento = new Date(nacimiento);
-            var edad_alumno = fecha_actual.getFullYear() - fecha_nacimiento.getFullYear();
-
-            console.log (edad_alumno)
-            console.log (edad_minima)
-
-            if (edad_alumno < edad_minima){
-                <?php  $edad = "menor"  ?>
-            }else{
-                <?php  $edad = "mayor"  ?>
-            }
-        }
-    </script> 
-</body>
 </html>
 
 
@@ -82,29 +59,17 @@ if(!empty($_POST["dni_alumno"]) && !empty($_POST["nombre_alumno"]) && !empty($_P
     $apellido_alumno = $_POST["apellido_alumno"];
     $fecha_nacimiento_alumno = $_POST["fecha_nacimiento_alumno"];
 
-    /*date_default_timezone_set(timezoneId:"America/Argentina/Buenos_Aires");
-    $fecha_actual = date("Y-m-d");
-    $edad_alumno = $fecha_nacimiento_alumno-> diff($fecha_actual);
 
-    $minimo = Parametro::edadMinima();
-    $contenedor = $BD->Ejecutar($minimo);
-    $edad_alumno = $contenedor -> fetch_assoc();*/
-
-    if ($edad === "menor"){
-        echo"<script> alert('La edad del alumno no es suficiente para pasar la inscripcion');
-        location.href ='alta_alumno.php';</script>"; 
-        }else{
+    $alumno = new Alumno($dni_alumno,$nombre_alumno,$apellido_alumno,$fecha_nacimiento_alumno);
+    $insertar = Alumno::insertarAlumno($alumno);
+    $insertarAlumno = $BD -> Ejecutar($insertar);
     
-        $alumno = new Alumno($dni_alumno,$nombre_alumno,$apellido_alumno,$fecha_nacimiento_alumno);
-        $insertar = Alumno::insertarAlumno($alumno);
-        $insertarAlumno = $BD -> Ejecutar($insertar);
-        
 
-        if($insertarAlumno){
-            ?><script> alert("¡<?php echo $nombre_alumno." ".$apellido_alumno; ?> fue agregado!");
-                location.href ="alta_alumno.php";</script><?php
-        }
+    if($insertarAlumno){
+        ?><script> alert("¡<?php echo $nombre_alumno." ".$apellido_alumno; ?> fue agregado!");
+            location.href ="alta_alumno.php";</script><?php
     }
+
 }
 
 ?>
