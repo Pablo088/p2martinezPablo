@@ -6,6 +6,14 @@
 
  $BD = new BD();
 
+$minimo = Parametro::edadMinima();
+$contenedor = $BD->Ejecutar($minimo);
+$edad_minima = $contenedor->fetch_assoc()['edad_minima'];
+
+$fecha_actual = date('Y');
+
+$año_minimo = $fecha_actual - $edad_minima;
+
 ?>
 
 
@@ -32,7 +40,7 @@
             <input type="text" name="dni_alumno" placeholder="DNI">
             <input type="text" name="nombre_alumno" placeholder="Nombre">
             <input type="text" name="apellido_alumno" placeholder="Apellido">
-            <input type="date" max="2006-07-01" name="fecha_nacimiento_alumno" placeholder="Fecha de Nacimiento">   
+            <input type="date" max="<?php echo $año_minimo ?>-06-30" name="fecha_nacimiento_alumno" placeholder="Fecha de Nacimiento">   
             <input type="submit" value="Agregar" class="btn btn-primary">
         </div>
     </form>
