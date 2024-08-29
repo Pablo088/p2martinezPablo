@@ -28,35 +28,6 @@ CREATE TABLE IF NOT EXISTS `alumno` (
   PRIMARY KEY (`dni_alumno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla sistema_asistencia.alumno: ~26 rows (aproximadamente)
-REPLACE INTO `alumno` (`dni_alumno`, `nombre_alumno`, `apellido_alumno`, `fecha_nacimiento_alumno`) VALUES
-	('38570361', 'Marcos', 'Reynoso', '2023-10-07'),
-	('39255959', 'Franco Antonio', 'Robles', '2023-10-07'),
-	('40018598', 'Kevin Gustavo', 'Quiroga', '2023-10-07'),
-	('40790201', 'Esteban ', 'Copello', '2023-10-07'),
-	('40790545', 'Daian Exequiel', 'Fernandez', '2023-10-07'),
-	('41872676', 'Facundo Ariel', 'Janusa', '2023-10-07'),
-	('42069298', 'Marcos Damián', 'Godoy', '2023-10-07'),
-	('42070085', 'Maria Pia', 'Melgarejo', '2023-10-07'),
-	('42850626', 'Lucas', 'Barreiro', '2023-10-07'),
-	('43149316', 'Franco Agustin', 'Chappe', '2023-10-07'),
-	('43414566', 'Maximiliano', 'Weyler', '2023-10-07'),
-	('43631710', 'Thiago Jeremías', 'Meseguer', '2023-10-07'),
-	('43631803', 'Bruno', 'Godoy', '2023-10-07'),
-	('43632750', 'Roman', 'Coletti', '2023-10-07'),
-	('44282007', 'Bianca Ariana', 'Quiroga', '2023-10-07'),
-	('44623314', 'Facundo Gerónimo', 'Figún', '2023-10-07'),
-	('44644523', 'Ignacio Agustin', 'Piter', '2023-10-07'),
-	('44980999', 'Nicolas Osvaldo', 'Fernandez', '2023-10-07'),
-	('44981059', 'Federico José', 'Martinolich', '2023-10-07'),
-	('45048325', 'Felipe', 'Franco', '2023-10-07'),
-	('45048950', 'Facundo Martin ', 'Jara', '2023-10-07'),
-	('45385675', 'Teo', 'Hildt', '2023-10-07'),
-	('45387761', 'Santiago Nicolas', 'Martinez Bender', '2023-10-07'),
-	('45389325', 'Lucas Jeremias', 'Fiorotto', '2023-10-07'),
-	('45741185', 'Pablo Federico', 'Martinez', '2023-10-07'),
-	('45847922', 'Franco', 'Cabrera', '2023-10-07');
-
 -- Volcando estructura para tabla sistema_asistencia.asistencia
 CREATE TABLE IF NOT EXISTS `asistencia` (
   `dni_alumno` varchar(50) DEFAULT NULL,
